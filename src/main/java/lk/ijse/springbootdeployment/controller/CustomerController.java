@@ -1,15 +1,23 @@
 package lk.ijse.springbootdeployment.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.ijse.springbootdeployment.entity.Customer;
+import lk.ijse.springbootdeployment.service.CustomerService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/customer")
+@RequiredArgsConstructor
 public class CustomerController {
-    @GetMapping
-    public String getCustomer() {
-        return "Customer 1";
-        // test
+
+    private final CustomerService customerService;
+    public String getAllCustomers() {
+        return "List of all customers";
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+        return ResponseEntity.ok(customerService.createCustomer(customer));
     }
 }
