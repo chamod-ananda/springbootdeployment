@@ -10,5 +10,6 @@ public class CustomerController {
     @GetMapping
     public String getCustomer() {
         return "Customer 1";
+        // test
     }
 }
